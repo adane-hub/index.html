@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HR Data Solution</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f9;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .header h1 {
+            color: #2c3e50;
+            margin-bottom: 0.5rem;
+        }
+
+        .nav-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+        }
+
+        .nav-buttons button {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 0.75rem 1.5rem;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .nav-buttons button:hover, .nav-buttons button.active {
+            background-color: #2980b9;
+        }
+
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .content-section h2 {
+            color: #34495e;
+            border-bottom: 2px solid #e74c3c;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .content-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .content-list li {
+            background-color: #ecf0f1;
+            padding: 1rem;
+            margin-bottom: 0.75rem;
+            border-radius: 5px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="header">
+        <h1>HR Data Solution</h1>
+        <div class="nav-buttons">
+            <button onclick="showSection('progress-update')">Progress Update</button>
+            <button onclick="showSection('where-are-we')">Where are we?</button>
+            <button onclick="showSection('challenges')">Challenges</button>
+        </div>
+    </div>
+
+    <div id="progress-update" class="content-section active">
+        <h2>Progress Update</h2>
+        <ul class="content-list">
+            <li><strong>Executive Summary:</strong> Provide a concise overview of the project's status, highlighting key achievements and overall health.</li>
+            <li><strong>Overall Project Timeline:</strong> Outline the current project schedule, including completed milestones, upcoming deadlines, and any changes to the original plan.</li>
+        </ul>
+    </div>
+
+    <div id="where-are-we" class="content-section">
+        <h2>Where we are now?</h2>
+        <ul class="content-list">
+            <li><strong>Key Wins:</strong> Celebrate and detail recent accomplishments, such as successful feature deployments or positive user feedback.</li>
+            <li><strong>In Progress:</strong> List the current tasks and activities, along with their status (e.g., development, testing, review).</li>
+            <li><strong>Next Steps:</strong> Define the immediate actions and objectives for the next period, ensuring the team knows what to prioritize.</li>
+        </ul>
+    </div>
+
+    <div id="challenges" class="content-section">
+        <h2>Challenges</h2>
+        <ul class="content-list">
+            <li><strong>Risk:</strong> Identify and describe potential threats or obstacles that could impact the project.</li>
+            <li><strong>Mitigation:</strong> Explain the strategies and plans in place to address the identified risks.</li>
+            <li><strong>Help Needed:</strong> Clearly state what support is required from stakeholders, such as resources, decisions, or approvals.</li>
+        </ul>
+    </div>
+
+</div>
+
+<script>
+    function showSection(sectionId) {
+        // Hide all sections
+        const sections = document.querySelectorAll('.content-section');
+        sections.forEach(section => {
+            section.classList.remove('active');
+        });
+
+        // Show the selected section
+        const selectedSection = document.getElementById(sectionId);
+        selectedSection.classList.add('active');
+
+        // Update button active state (optional but good for UX)
+        const buttons = document.querySelectorAll('.nav-buttons button');
+        buttons.forEach(button => {
+            button.classList.remove('active');
+        });
+        const activeButton = document.querySelector(`button[onclick="showSection('${sectionId}')"]`);
+        if (activeButton) {
+            activeButton.classList.add('active');
+        }
+    }
+
+    // Set 'Progress Update' as active on load
+    document.addEventListener('DOMContentLoaded', () => {
+        showSection('progress-update');
+    });
+</script>
+
+</body>
+</html>
